@@ -20,38 +20,23 @@ var div = function(number1, number2) {
 };
 
 
-$(document).ready(function() {
+	$(document).ready(function() {
+	  $("form#calculator").submit(function(event) {
+	    event.preventDefault();
+	    var number1 = parseInt($("input#number1").val());
+	    var number2 = parseInt($("input#number2").val());
+	    var operator = $("input:radio[name=operator]:checked").val();
+	    var result;
 
-	$("form#add").submit(function(event) {
-		var number1 = parseInt($("#add1").val());
-		var number2 = parseInt($("#add2").val());
-		var result = (add(number1, number2));
-		$("#output").text(result);
-		event.preventDefault();
-	});
-
-	$("form#sub").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#sub1").val());
-		var number2 = parseInt($("#sub2").val());
-		var result = (sub(number1, number2));
-		$("#output").text(result);
-	});
-
-	$("form#mult").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#mult1").val());
-		var number2 = parseInt($("#mult2").val());
-		var result = (mult(number1, number2));
-		$("#output").text(result);
-	});
-
-	$("form#div").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#div1").val());
-		var number2 = parseInt($("#div2").val());
-		var result = (div(number1, number2));
-		$("#output").text(result);
-	});
-
+			if (operator === "add") {
+      result = add(number1, number2);
+    } else if (operator === "subtract") {
+      result = sub(number1, number2);
+    } else if (operator === "multiply") {
+      result = mult(number1, number2);
+    } else if (operator === "divide") {
+      result = div(number1, number2);
+    }
+	    $("#output").text(result);
+	  });
 });
